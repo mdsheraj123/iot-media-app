@@ -37,7 +37,6 @@ package org.codeaurora.qmedia.fragments;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Build;
 import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
@@ -50,13 +49,7 @@ public class PermissionFragment extends Fragment {
 
 
     private final int PERMISSIONS_REQUEST_CODE = 10;
-    String[] PERMISSIONS_REQUIRED = (Build.VERSION.SDK_INT >= 33) ? new String[]{
-            "android.permission.RECORD_AUDIO",
-            "android.permission.READ_MEDIA_AUDIO",
-            "android.permission.READ_MEDIA_VIDEO",
-            "android.permission.READ_MEDIA_IMAGES",
-            "android.permission.CAMERA",
-            "android.permission.MODIFY_AUDIO_SETTINGS"} : new String[]{
+    String[] PERMISSIONS_REQUIRED = new String[]{
             "android.permission.READ_EXTERNAL_STORAGE",
             "android.permission.RECORD_AUDIO",
             "android.permission.WRITE_EXTERNAL_STORAGE",
