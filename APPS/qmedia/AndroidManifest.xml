@@ -60,14 +60,30 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.codeaurora.qmedia"
-    android:versionName="4.2.0">
+    android:versionName="5.0.0">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="29" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission
+        android:name="android.permission.READ_MEDIA_AUDIO"
+        android:minSdkVersion="33" />
+    <uses-permission
+        android:name="android.permission.READ_MEDIA_VIDEO"
+        android:minSdkVersion="33" />
+    <uses-permission
+        android:name="android.permission.READ_MEDIA_IMAGES"
+        android:minSdkVersion="33" />
+
 
     <application
         android:allowBackup="false"
@@ -76,8 +92,11 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/app_icon_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.QMedia">
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.QMedia"
+        tools:node="replace">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

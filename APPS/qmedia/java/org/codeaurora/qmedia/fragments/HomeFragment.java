@@ -75,6 +75,7 @@ import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.Build;
 import android.util.Log;
 import android.util.Size;
 import android.view.Display;
@@ -230,7 +231,18 @@ public class HomeFragment extends Fragment implements CameraDisconnectedListener
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-        mRecorder.setOutputFile("/dev/null");
+        if (Build.VERSION.SDK_INT >= 33) {
+            File temp = getActivity().getApplicationContext().getFilesDir();
+            File sds = new File(temp, "tmp_media.3gpp");
+            try {
+                sds.createNewFile();
+            } catch (IOException e) {
+                Log.e("TAG", "Failed to create new File");
+            }
+            mRecorder.setOutputFile(sds);
+        } else {
+            mRecorder.setOutputFile("/dev/null");
+        }
         try {
           mRecorder.prepare();
         } catch (IOException e) {
